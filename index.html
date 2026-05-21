@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Merve Kocabas</title>
+
+    <meta name="author" content="Merve Kocabas">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+  </head>
+
+  <body>
+    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <tr style="padding:0px">
+        <td style="padding:0px">
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr style="padding:0px">
+              <td style="padding:2.5%;width:63%;vertical-align:middle">
+                <p class="name" style="text-align: center;">
+                  Merve Kocabas
+                </p>
+                <p>
+                  I am building my website!
+                </p>
+                <p style="text-align:center">
+                </p>
+              </td>
+              <td style="padding:2.5%;width:37%;max-width:37%">
+                <a href="images/mervekocabas.png"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/mervekocabas.png" class="hoverZoomLink"></a>
+              </td>
+            </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:16px;width:100%;vertical-align:middle">
+                <h2>Recent Work</h2>
+              </td>
+            </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:16px;width:25%;vertical-align:middle">
+                <img src="images/TF_teaser.png" alt="Trajectory Forcing teaser" style="width:100%;max-width:100%;">
+              </td>
+              <td style="padding:8px;width:75%;vertical-align:middle">
+                <span class="papertitle">Trajectory Forcing: Structure-First Generation with Controllable Semantic Trajectories</span>
+                <br>
+                <strong>Merve Kocabas</strong>,
+                Gege Gao,
+                Bernhard Schölkopf,
+                Andreas Geiger
+                <br>
+                <em>Under Review</em>, 2026
+                <br>
+                Website: Coming soon
+                &nbsp;/&nbsp;
+                Code: Coming soon
+                &nbsp;/&nbsp;
+                <a href="javascript:void(0);" onclick="toggleAbstract('tf_abstract'); return false;">Abstract</a>
+                <p></p>
+                <p id="tf_abstract" style="display:none;">
+                  <strong>Abstract:</strong>
+                  Diffusion and flow-based generative models typically treat generation as an opaque mapping from noise to image. Although recent methods have begun to exploit trajectory structure for improved quality, intermediate states remain uninterpretable and inaccessible to users. We propose Trajectory Forcing (TF), a framework that elevates the generative trajectory from a hidden computational process to an explicit, controllable object. Generation is organized as a sequence of semantically structured stages, progressing from global layout through object-level parts to fine-grained detail, where every intermediate state can be decoded, inspected, and edited. We construct coarse-to-fine teacher hierarchies via unsupervised clustering in pretrained, semantically meaningful representation spaces (e.g., DINOv2), and train a hierarchy-conditioned model using one-step flow matching at each level. We further introduce trajectory-aware evaluation measures that quantify structural consistency and local controllability beyond standard metrics such as FID. Experiments show that TF achieves competitive sample quality while producing structurally coherent, decodable intermediate states that support localized editing at each semantic level. By shifting the modeling focus from the final model outputs to generative dynamics, Trajectory Forcing enables controllable, trajectory-aware image synthesis.
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:16px;width:100%;text-align:center;vertical-align:middle">
+                <p style="font-size:16px;font-weight:700;text-align:center;margin:0;">Where my visitors are from</p>
+                <br>
+                <!--
+                  ClustrMaps visitor map. To activate:
+                  1. Go to https://clustrmaps.com
+                  2. Enter your site URL: https://mervekocabas.github.io
+                  3. Copy the <script> tag it generates and replace the one below
+                     (it will contain your unique id, e.g. d=abc123...).
+                  Until then the map will not render.
+                  Size is controlled by the 320px wrapper below; bump it up/down to taste.
+                -->
+                <div style="max-width:320px;margin:0 auto;">
+                  <style>#clustrmaps-content img, #map-widget img { width:100%; height:auto; }</style>
+                  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=YOUR_CLUSTRMAPS_ID&cl=ffffff&w=a"></script>
+                </div>
+              </td>
+            </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:0px">
+                <br>
+                <p style="text-align:right;font-size:small;">
+                  Website template by <a href="https://jonbarron.info/">Jon Barron</a>.
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
+        </td>
+      </tr>
+    </table>
+    <script type="text/javascript">
+      function toggleAbstract(id) {
+        var el = document.getElementById(id);
+        el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+      }
+    </script>
+  </body>
+</html>
