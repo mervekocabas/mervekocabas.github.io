@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" role="img" aria-label="Trajectory Forcing mark">
+  <defs>
+    <linearGradient id="tfFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16a3a3"/>
+      <stop offset="1" stop-color="#ff6a3d"/>
+    </linearGradient>
+    <linearGradient id="tfSheen" x1="0" y1="0" x2="1" y2="0"
+        gradientUnits="objectBoundingBox" gradientTransform="rotate(25 0.5 0.5)">
+      <stop offset="0.40" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.50" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="0.60" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="tfClip"><rect width="52" height="52" rx="14" ry="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#tfClip)">
+    <rect width="52" height="52" fill="url(#tfFill)"/>
+    <rect width="52" height="52" fill="url(#tfSheen)"/>
+    <text x="26" y="27" text-anchor="middle" dominant-baseline="central"
+      font-family="'Google Sans','Inter','Helvetica Neue',Arial,sans-serif"
+      font-weight="800" font-size="22" letter-spacing="0.5" fill="#ffffff">TF</text>
+  </g>
+</svg>

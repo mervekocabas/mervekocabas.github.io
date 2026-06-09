@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Test website template for trying layouts, sections, and media locally.">
+  <meta name="keywords" content="test, website, template">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trajectory Forcing: Structure-First Generation with Controllable Semantic Trajectories</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=2">
+  <link rel="shortcut icon" type="image/svg+xml" href="./favicon.svg?v=2">
+  <link rel="apple-touch-icon" href="./favicon.svg?v=2">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Trajectory Forcing: Structure-First Generation with Controllable Semantic Trajectories</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Merve Kocabas</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ggghsl.github.io">Gege Gao</a><sup>1,2,4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ethz.ch/de/die-eth-zuerich/organisation/who-is-who/infk/details.MTkyMjY0.TGlzdC8xOTA5LDg5MTA1NjU2NQ==.html">Bernhard Schölkopf</a><sup>2,3,4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cvlibs.net">Andreas Geiger</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Tübingen and Tübingen AI Center,</span>
+            <span class="author-block"><sup>2</sup>Max Planck Institute for Intelligent Systems,</span>
+            <span class="author-block"><sup>3</sup>ELLIS Institute,</span>
+            <span class="author-block"><sup>4</sup>ETH Zürich</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark"
+                   style="pointer-events: none; opacity: 0.65;"
+                   aria-disabled="true" tabindex="-1">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper (coming soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/mervekocabas/TrajectoryForcing.git"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="./static/images/teaser_v3.png" alt="Teaser image" style="max-width: 100%; height: auto;" />
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            Trajectory Forcing reframes image generation as a structured coarse-to-fine process. Instead of treating intermediate states as hidden computation, it organizes generation into semantic stages that can be decoded, inspected, and edited along the way. Starting from global layout and progressing through parts and subparts to fine detail, the model exposes the generative trajectory as a controllable object rather than a black box.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <details class="content-dropdown">
+          <summary class="title is-3">Motivation</summary>
+          <div class="content has-text-centered content-dropdown-body">
+            <img src="./static/images/fast_drawing_v2.png" alt="Motivation image" style="max-width: 72%; height: auto;" />
+            <p class="has-text-justified" style="margin-top: 1.25rem;">
+              <strong>Artistic training and generative modeling.</strong> Human visual artists typically adopt a coarse-to-fine workflow, first establishing global structure and dominant color relationships before refining local details, as illustrated in the Figure above (Images courtesy of @yerenhb). Across artistic training practices, beginners are repeatedly advised to avoid <em>chasing details</em> and instead focus on structural abstraction and global coherence. The recurrence of this principle across instructors and contexts suggests that it reflects a stable cognitive regularity: global organization precedes and constrains local articulation.
+            </p>
+            <p class="has-text-justified">
+              Motivated by this observation, we incorporate this structural prior into our model design, translating the coarse-to-fine principle into a hierarchical generation framework where global consistency guides detail refinement.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <details class="content-dropdown">
+          <summary class="title is-3">Method</summary>
+          <div class="content has-text-centered content-dropdown-body">
+            <img src="./static/images/pipeline-3.png" alt="Pipeline 3" style="max-width: 100%; height: auto;" />
+            <p class="has-text-justified" style="margin-top: 1.25rem;">
+              <strong>Trajectory Forcing pipeline.</strong>
+              Given an input image, we extract DINOv2 features and construct a teacher hierarchy via unsupervised clustering, producing level canvases from fine (original features, <em>ℓ = L-1</em>) to coarse (object/background, <em>ℓ = 0</em>).
+              A single shared network is trained across all levels: at each training step a level <em>ℓ</em> is sampled, and the network denoises the current-level canvas <em>z</em><sup>(ℓ)</sup>(t) conditioned on the previous-level canvas <em>z</em><sup>(ℓ-1)</sup>.
+              At inference, the direction reverses: generation proceeds sequentially from coarse to fine.
+              &oplus; denotes channel-wise concatenation.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Teacher Hierarchies</h2>
+        <div class="content has-text-centered">
+          <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+            Teacher hierarchies built from real images by clustering DINOv2 features into a coarse-to-fine stack: object/background, parts, subparts, then the finest tokens.
+            The slider sweeps from the coarse object/background level toward fine detail; drag to reveal the original image.
+          </p>
+          <div class="dataset-creation-panel">
+            <div class="columns is-variable is-6 dataset-creation-columns">
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img
+                      slot="first"
+                      id="dataset-creation-animation"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/teacher_hier_img/data_1/data_1_1.png"
+                      alt="Dataset creation sequence" />
+                    <img
+                      slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/teacher_hier_img/data_1/data_1.png"
+                      alt="Reference dataset creation image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img
+                      slot="first"
+                      id="dataset-creation-animation-2"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/teacher_hier_img/data_2/data_2_1.png"
+                      alt="Dataset creation sequence" />
+                    <img
+                      slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/teacher_hier_img/data_2/data_2.png"
+                      alt="Reference dataset creation image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img
+                      slot="first"
+                      id="dataset-creation-animation-3"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/teacher_hier_img/data_3/data_3_1.png"
+                      alt="Dataset creation sequence" />
+                    <img
+                      slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/teacher_hier_img/data_3/data_3.png"
+                      alt="Reference dataset creation image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Trajectory Forcing Sampling</h2>
+        <div class="content has-text-centered">
+          <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+            Generated samples decoded at every level of the coarse-to-fine trajectory.
+            The slider sweeps from the model's coarse first level toward fine detail; drag to reveal the final image.
+          </p>
+          <div class="dataset-creation-panel">
+            <div class="columns is-variable is-6 dataset-creation-columns">
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-animation-persiancat"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/persiancat/persiancat_1.png"
+                      alt="Generated hierarchy sample sequence" />
+                    <img slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/sampling_img/persiancat/persiancat.png"
+                      alt="Generated sample final image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-animation-lighthouse"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/lighthouse/lighthouse_1.png"
+                      alt="Generated hierarchy sample sequence" />
+                    <img slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/sampling_img/lighthouse/lighthouse.png"
+                      alt="Generated sample final image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-animation-teddybear"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/teddybear/teddybear_1.png"
+                      alt="Generated hierarchy sample sequence" />
+                    <img slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/sampling_img/teddybear/teddybear.png"
+                      alt="Generated sample final image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+            </div>
+            <div class="columns is-variable is-6 dataset-creation-columns">
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-animation-daisy"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/daisy/daisy_1.png"
+                      alt="Generated hierarchy sample sequence" />
+                    <img slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/sampling_img/daisy/daisy.png"
+                      alt="Generated sample final image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-animation-cheeseburger"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/cheeseburger/cheeseburger_1.png"
+                      alt="Generated hierarchy sample sequence" />
+                    <img slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/sampling_img/cheeseburger/cheeseburger.png"
+                      alt="Generated sample final image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-animation-sportscar"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/sportscar/sportscar_1.png"
+                      alt="Generated hierarchy sample sequence" />
+                    <img slot="second"
+                      class="dataset-creation-image dataset-creation-reference"
+                      src="./static/images/sampling_img/sportscar/sportscar.png"
+                      alt="Generated sample final image" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 2.5rem;">Latent Generation Trajectory</h3>
+          <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+            The same samples viewed as the generation unfolds: each slider shows the generated latent (left, PCA-colored) beside its RAE decoding (right).
+            Both sides sweep together from the coarse first level toward fine detail; drag to compare the latent structure with its decoded image at each level.
+          </p>
+          <div class="dataset-creation-panel">
+            <div class="columns is-variable is-6 dataset-creation-columns">
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-latent-persiancat"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/persiancat/persiancat_pca_1.png"
+                      alt="Generated latent level (PCA)" />
+                    <img slot="second" id="sampling-decoded-persiancat"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/persiancat/persiancat_1.png"
+                      alt="Decoded level" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-latent-lighthouse"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/lighthouse/lighthouse_pca_1.png"
+                      alt="Generated latent level (PCA)" />
+                    <img slot="second" id="sampling-decoded-lighthouse"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/lighthouse/lighthouse_1.png"
+                      alt="Decoded level" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-latent-teddybear"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/teddybear/teddybear_pca_1.png"
+                      alt="Generated latent level (PCA)" />
+                    <img slot="second" id="sampling-decoded-teddybear"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/teddybear/teddybear_1.png"
+                      alt="Decoded level" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+            </div>
+            <div class="columns is-variable is-6 dataset-creation-columns">
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-latent-daisy"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/daisy/daisy_pca_1.png"
+                      alt="Generated latent level (PCA)" />
+                    <img slot="second" id="sampling-decoded-daisy"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/daisy/daisy_1.png"
+                      alt="Decoded level" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-latent-cheeseburger"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/cheeseburger/cheeseburger_pca_1.png"
+                      alt="Generated latent level (PCA)" />
+                    <img slot="second" id="sampling-decoded-cheeseburger"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/cheeseburger/cheeseburger_1.png"
+                      alt="Decoded level" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <div class="dataset-creation-card">
+                  <img-comparison-slider class="dataset-creation-compare" value="50">
+                    <img slot="first" id="sampling-latent-sportscar"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/sportscar/sportscar_pca_1.png"
+                      alt="Generated latent level (PCA)" />
+                    <img slot="second" id="sampling-decoded-sportscar"
+                      class="dataset-creation-image dataset-creation-animation"
+                      src="./static/images/sampling_img/sportscar/sportscar_1.png"
+                      alt="Decoded level" />
+                  </img-comparison-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Trajectory Forcing Editing</h2>
+        <div class="content has-text-centered">
+          <video controls autoplay muted loop playsinline style="max-width: 100%; height: auto; border-radius: 8px;">
+            <source src="./static/images/editing_explanation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>(coming soon)</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Theme modified from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
