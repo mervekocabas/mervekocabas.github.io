@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" role="img" aria-label="Merve Kocabas mark">
+  <defs>
+    <linearGradient id="mkFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="0.5" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="mkSheen" x1="0" y1="0" x2="1" y2="0"
+        gradientUnits="objectBoundingBox" gradientTransform="rotate(25 0.5 0.5)">
+      <stop offset="0.40" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.50" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="0.60" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="mkClip"><rect width="52" height="52" rx="14" ry="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#mkClip)">
+    <rect width="52" height="52" fill="url(#mkFill)"/>
+    <rect width="52" height="52" fill="url(#mkSheen)"/>
+  </g>
+</svg>
