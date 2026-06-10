@@ -25,8 +25,14 @@
                 </p>
                 <p>
                   I am a Master&rsquo;s student in Machine Learning at the University of T&uuml;bingen, working with <a href="https://www.cvlibs.net">Prof. Andreas Geiger</a> and <a href="https://ggghsl.github.io">Gege Gao</a> in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/">Autonomous Vision Group</a>. I am currently a visiting student at the Georgia Institute of Technology, where I work with <a href="https://sarafridov.github.io">Prof. Sara Fridovich-Keil</a> in the <a href="https://voilalab.github.io">VOILA Lab</a>. My studies are supported by the <a href="https://eliza.school">ELIZA Master Scholarship</a>, and my master&rsquo;s thesis is supported by a PROMOS scholarship. Before my master&rsquo;s studies, I completed my undergraduate education at Middle East Technical University, where I studied Computer Engineering and Aerospace Engineering.
+                  I am always happy to connect, so feel free to reach out!
                 </p>
                 <p style="text-align:center">
+                  <a href="mailto:merve.kocabas@outlook.com">Email</a>
+                  &nbsp;/&nbsp;
+                  <a href="https://github.com/mervekocabas">Github</a>
+                  &nbsp;/&nbsp;
+                  <a href="https://www.linkedin.com/in/merve-kocabas">LinkedIn</a>
                 </p>
               </td>
               <td style="padding:2.5%;width:37%;max-width:37%">
@@ -70,13 +76,22 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:16px;width:100%;text-align:center;vertical-align:middle">
-                <p style="font-size:16px;font-weight:700;text-align:center;margin:0;">Where my visitors are from</p>
-                <br>
-                <!-- ClustrMaps visitor map. Size is controlled by the 320px wrapper; adjust to taste. -->
-                <div style="max-width:320px;margin:0 auto;">
-                  <style>#clustrmaps-content img, #map-widget img { width:100%; height:auto; }</style>
-                  <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=a&t=tt&d=zLzFjI63dTINv-kNm2HGb04mRPBSiloi5pVxx4yXsbI"></script>
-                </div>
+                <!-- Visit counter via the free counterapi.dev service. Each page load increments the count. -->
+                <p style="font-size:small;color:#666;text-align:center;margin:0;">
+                  Total <span id="visit-count">&hellip;</span> visits since June 2026
+                </p>
+                <script type="text/javascript">
+                  (function () {
+                    var el = document.getElementById('visit-count');
+                    fetch('https://api.counterapi.dev/v1/mervekocabas-github-io/home/up')
+                      .then(function (r) { return r.json(); })
+                      .then(function (d) {
+                        var n = (d && (d.count != null ? d.count : d.value));
+                        if (n != null) { el.textContent = Number(n).toLocaleString(); }
+                      })
+                      .catch(function () { /* leave the ellipsis if the counter is unreachable */ });
+                  })();
+                </script>
               </td>
             </tr>
           </tbody></table>
