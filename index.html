@@ -50,7 +50,7 @@
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:16px;width:25%;vertical-align:middle">
-                <img src="images/TF_teaser.png" alt="Trajectory Forcing teaser" style="width:100%;max-width:100%;">
+                <img src="images/teaser_tf_parallel.gif" alt="Trajectory Forcing teaser" title="Click to enlarge" onclick="openLightbox('images/teaser_tf_parallel.gif')" style="width:100%;max-width:100%;box-sizing:border-box;border-radius:8px;border:2px solid #073763;padding:6px;background:#fff;box-shadow:0 2px 12px rgba(7,55,99,.15);cursor:zoom-in;">
               </td>
               <td style="padding:8px;width:75%;vertical-align:middle">
                 <span class="papertitle">Trajectory Forcing: Structure-First Generation with Controllable Semantic Trajectories</span>
@@ -108,11 +108,25 @@
         </td>
       </tr>
     </table>
+    <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);cursor:zoom-out;align-items:center;justify-content:center;padding:24px;">
+      <img id="lightbox-img" src="" alt="Enlarged view" style="max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 4px 30px rgba(0,0,0,.5);">
+    </div>
     <script type="text/javascript">
       function toggleAbstract(id) {
         var el = document.getElementById(id);
         el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
       }
+      function openLightbox(src) {
+        var box = document.getElementById('lightbox');
+        document.getElementById('lightbox-img').src = src;
+        box.style.display = 'flex';
+      }
+      function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+      }
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
     </script>
   </body>
 </html>
