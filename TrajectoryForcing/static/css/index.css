@@ -242,3 +242,84 @@ body {
     display: block;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Dark mode — follows the visitor's system setting (prefers-color-scheme).
+   Overrides Bulma's light surfaces/text and the custom panels on this page.
+--------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #15191e !important;
+  }
+
+  body {
+    color: #cfd3d8;
+  }
+
+  /* Heroes/sections have no background of their own — let the dark body show */
+  .hero,
+  .section {
+    background-color: transparent !important;
+  }
+
+  /* Titles, headings, body copy */
+  .title,
+  .publication-title,
+  .subtitle,
+  h1, h2, h3, h4, h5, h6 {
+    color: #f1f3f5 !important;
+  }
+
+  .content,
+  .content p,
+  p, td, th, li, dd, dt {
+    color: #cfd3d8;
+  }
+
+  /* Bulma forces a dark color on <strong>; make it readable on dark */
+  strong,
+  .content strong {
+    color: #f1f3f5;
+  }
+
+  /* Links */
+  a {
+    color: #4ea3f0;
+  }
+  a:hover {
+    color: #f5a94e;
+  }
+  .publication-authors a {
+    color: #5cb3ff !important;
+  }
+
+  /* Custom card/panel surfaces */
+  .content-dropdown {
+    background: #1d2228;
+    border-color: #2c333b;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .dataset-creation-card {
+    background: #1d2228;
+    border-color: #2c333b;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .interpolation-panel {
+    background: #1d2228;
+  }
+
+  .results-carousel .item {
+    border-color: #2c333b;
+  }
+
+  /* Footer */
+  .footer {
+    background-color: #15191e !important;
+  }
+  .footer .icon-link {
+    color: #cfd3d8;
+  }
+}
