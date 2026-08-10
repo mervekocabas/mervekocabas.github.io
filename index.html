@@ -81,28 +81,6 @@
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
-              <td style="padding:16px;width:100%;text-align:center;vertical-align:middle">
-                <!-- Visit counter via the free counterapi.dev service. Each page load increments the count. -->
-                <p style="font-size:small;color:#666;text-align:center;margin:0;">
-                  Total <span id="visit-count">&hellip;</span> visits since June 2026
-                </p>
-                <script type="text/javascript">
-                  (function () {
-                    var el = document.getElementById('visit-count');
-                    fetch('https://api.counterapi.dev/v1/mervekocabas-github-io/home/up')
-                      .then(function (r) { return r.json(); })
-                      .then(function (d) {
-                        var n = (d && (d.count != null ? d.count : d.value));
-                        if (n != null) { el.textContent = Number(n).toLocaleString(); }
-                      })
-                      .catch(function () { /* leave the ellipsis if the counter is unreachable */ });
-                  })();
-                </script>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
               <td style="padding:0px">
                 <br>
                 <p style="text-align:right;font-size:small;">
