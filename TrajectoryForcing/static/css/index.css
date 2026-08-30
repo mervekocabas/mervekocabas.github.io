@@ -249,6 +249,42 @@ body {
   padding-top: 0.5rem;
 }
 
+/* Method figures: block-centered and inset so they sit inside the dropdown card */
+.method-figure {
+  position: relative;
+  display: block;
+  width: 94%;
+  max-width: 94%;
+  margin: 0 auto;
+  line-height: 0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.method-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Hotspot over the "image courtesy" URL rendered inside the architecture figure */
+.architecture-credit-link {
+  position: absolute;
+  left: 83.6%;
+  top: 95%;
+  width: 16.4%;
+  height: 3.8%;
+  border-radius: 3px;
+  transition: background-color 0.15s ease;
+}
+
+.architecture-credit-link:hover,
+.architecture-credit-link:focus-visible {
+  background-color: rgba(7, 55, 99, 0.14);
+  outline: none;
+}
+
 .dataset-creation-card {
   height: 100%;
   border-radius: 14px;
