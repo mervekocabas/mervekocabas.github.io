@@ -65,6 +65,135 @@ body {
   margin-top: 0.75rem;
 }
 
+.poster-announcement {
+  width: fit-content;
+  max-width: min(100%, 680px);
+  margin: 0.9rem auto 0;
+  padding: 0.8rem 1.25rem 0.9rem;
+  color: #073763;
+  background: linear-gradient(135deg, #f4f9fd 0%, #ffffff 100%);
+  border: 4px solid #073763;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(7, 55, 99, 0.1);
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  text-align: center;
+}
+
+.poster-announcement-title {
+  margin: 0 0 0.5rem;
+  color: #073763;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.poster-announcement-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.1rem;
+}
+
+.poster-announcement-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.poster-announcement-detail .icon {
+  flex: 0 0 auto;
+  width: 1rem;
+  color: #58718a;
+}
+
+.poster-calendar-menu {
+  position: relative;
+}
+
+.poster-calendar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.65rem;
+  color: #ffffff;
+  background: #073763;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.35;
+  list-style: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.poster-calendar-link::-webkit-details-marker {
+  display: none;
+}
+
+.poster-calendar-link:hover,
+.poster-calendar-menu[open] .poster-calendar-link {
+  color: #ffffff;
+  background: #0d568c;
+  transform: translateY(-1px);
+}
+
+.poster-calendar-link:focus-visible {
+  color: #ffffff;
+  outline: 3px solid rgba(7, 55, 99, 0.25);
+  outline-offset: 2px;
+}
+
+.poster-calendar-chevron {
+  display: inline-flex;
+  margin-left: 0.08rem;
+  font-size: 0.66rem;
+  transition: transform 0.15s ease;
+}
+
+.poster-calendar-menu[open] .poster-calendar-chevron {
+  transform: rotate(180deg);
+}
+
+.poster-calendar-options {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.45rem);
+  left: 50%;
+  min-width: 13.5rem;
+  padding: 0.35rem;
+  background: #ffffff;
+  border: 1px solid rgba(7, 55, 99, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(7, 55, 99, 0.18);
+  transform: translateX(-50%);
+}
+
+.poster-calendar-options a {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.65rem;
+  color: #073763;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.poster-calendar-options a:hover,
+.poster-calendar-options a:focus-visible {
+  color: #073763;
+  background: #edf5fb;
+  outline: none;
+}
+
+.poster-calendar-options .icon {
+  width: 1rem;
+  color: #58718a;
+}
+
 .publication-venue {
     color: #555;
     width: fit-content;
@@ -320,6 +449,21 @@ body {
   .dataset-creation-columns {
     display: block;
   }
+
+  .poster-announcement {
+    padding: 0.75rem 0.9rem 0.85rem;
+  }
+
+  .poster-announcement-details {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .poster-calendar-menu {
+    align-self: center;
+    margin-top: 0.25rem;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -371,6 +515,52 @@ body {
   }
   .publication-authors a {
     color: #5cb3ff !important;
+  }
+
+  .poster-announcement {
+    color: #d8e8f7;
+    background: linear-gradient(135deg, #1c2a37 0%, #1d2228 100%);
+    border-color: #5cb3ff;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .poster-announcement-detail .icon {
+    color: #9ab6cf;
+  }
+
+  .poster-announcement-title {
+    color: #f1f3f5;
+  }
+
+  .poster-calendar-link {
+    color: #15202b;
+    background: #8cc4ff;
+  }
+
+  .poster-calendar-link:hover,
+  .poster-calendar-menu[open] .poster-calendar-link {
+    color: #15202b;
+    background: #b5d9ff;
+  }
+
+  .poster-calendar-options {
+    background: #1d2228;
+    border-color: #344c61;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+  }
+
+  .poster-calendar-options a {
+    color: #d8e8f7;
+  }
+
+  .poster-calendar-options a:hover,
+  .poster-calendar-options a:focus-visible {
+    color: #f1f3f5;
+    background: #263746;
+  }
+
+  .poster-calendar-options .icon {
+    color: #9ab6cf;
   }
 
   /* Custom card/panel surfaces */
