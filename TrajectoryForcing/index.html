@@ -177,7 +177,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="./static/images/teaser_tf_parallel.gif"
+        <img class="zoomable-image" src="./static/images/teaser_tf_parallel.gif"
              style="max-width: 100%; height: auto; border-radius: 8px; border: 2px solid #073763; padding: 6px; background: #fff; box-shadow: 0 2px 12px rgba(7,55,99,.15);"
              alt="Parallel view of Trajectory Forcing: the data-driven trajectory and the Trajectory Forcing trajectory are drawn at the same time as two dashed curves sweeping together from noise to the finest scale." />
       </div>
@@ -200,7 +200,7 @@
             <span class="dropdown-hint"><span class="dropdown-hint-label"></span><span class="dropdown-chevron"></span></span>
           </summary>
           <div class="content has-text-centered content-dropdown-body">
-            <img src="./static/images/fast_drawing_v2.png" alt="Motivation image" style="max-width: 72%; height: auto;" />
+            <img class="zoomable-image" src="./static/images/fast_drawing_v2.png" alt="A speed-painting sequence illustrating a coarse-to-fine artistic workflow" style="max-width: 72%; height: auto;" />
             <p class="has-text-justified" style="margin-top: 1.25rem;">
               <strong>Artistic training and generative modeling.</strong> Human visual artists typically adopt a coarse-to-fine workflow, first establishing global structure and dominant color relationships before refining local details, as illustrated in the Figure above (Images courtesy of @yerenhb). Across artistic training practices, beginners are repeatedly advised to avoid <em>chasing details</em> and instead focus on structural abstraction and global coherence. The recurrence of this principle across instructors and contexts suggests that it reflects a stable cognitive regularity: global organization precedes and constrains local articulation.
             </p>
@@ -221,7 +221,7 @@
           </summary>
           <div class="content has-text-centered content-dropdown-body">
             <div class="method-figure">
-              <img src="./static/images/pipeline_v2.png" alt="Trajectory Forcing pipeline: building the teacher hierarchy from DINOv2 features, and hierarchy-conditioned denoising with a single shared DiT." />
+              <img class="zoomable-image" src="./static/images/pipeline_v2.png" alt="Trajectory Forcing pipeline: building the teacher hierarchy from DINOv2 features, and hierarchy-conditioned denoising with a single shared DiT." />
             </div>
             <p class="has-text-justified" style="margin-top: 1.25rem;">
               <strong>Trajectory Forcing pipeline.</strong>
@@ -231,7 +231,7 @@
               &oplus; denotes channel-wise concatenation.
             </p>
             <div class="method-figure architecture-figure" style="margin-top: 2rem;">
-              <img src="./static/images/architecture_details.png" alt="Architecture of Trajectory Forcing: teacher hierarchy construction, flow training with a shared DiT, hierarchical L-NFE sampling, and optional interactive editing." />
+              <img class="zoomable-image" src="./static/images/architecture_tf_slide_7.png" alt="Architecture of Trajectory Forcing, including teacher hierarchy construction, flow training, hierarchical sampling, and optional interactive editing." />
               <a class="architecture-credit-link" href="https://korayulusan.github.io" target="_blank" rel="noopener noreferrer" title="Image courtesy korayulusan.github.io"><span class="is-sr-only">Image courtesy korayulusan.github.io</span></a>
             </div>
           </div>
@@ -515,6 +515,25 @@
     </div>
   </div>
 </section>
+
+<div id="image-lightbox" class="image-lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="image-lightbox-caption" aria-describedby="image-lightbox-help">
+  <div class="image-lightbox-panel">
+    <div class="image-lightbox-toolbar">
+      <p id="image-lightbox-caption" class="image-lightbox-caption"></p>
+      <div class="image-lightbox-controls" aria-label="Image zoom controls">
+        <button type="button" class="image-lightbox-button" data-lightbox-action="zoom-out" aria-label="Zoom out">&minus;</button>
+        <output id="image-lightbox-zoom" class="image-lightbox-zoom" aria-live="polite">100%</output>
+        <button type="button" class="image-lightbox-button" data-lightbox-action="zoom-in" aria-label="Zoom in">+</button>
+        <button type="button" class="image-lightbox-button image-lightbox-reset" data-lightbox-action="reset">Reset</button>
+        <button type="button" class="image-lightbox-button image-lightbox-close" data-lightbox-action="close" aria-label="Close expanded image">&times;</button>
+      </div>
+    </div>
+    <div id="image-lightbox-stage" class="image-lightbox-stage">
+      <img id="image-lightbox-image" class="image-lightbox-image" alt="" draggable="false" />
+    </div>
+    <p id="image-lightbox-help" class="image-lightbox-help">Scroll or pinch to zoom <span aria-hidden="true">&middot;</span> Drag to pan <span aria-hidden="true">&middot;</span> Press Esc to close</p>
+  </div>
+</div>
 
 
 <section class="section" id="BibTeX">

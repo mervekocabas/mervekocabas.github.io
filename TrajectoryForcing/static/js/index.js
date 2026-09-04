@@ -185,6 +185,241 @@ function initializeLatentTrajectoryPanel() {
   }
 }
 
+function initializeImageLightbox() {
+  var lightbox = document.getElementById('image-lightbox');
+  var stage = document.getElementById('image-lightbox-stage');
+  var expandedImage = document.getElementById('image-lightbox-image');
+  var caption = document.getElementById('image-lightbox-caption');
+  var zoomOutput = document.getElementById('image-lightbox-zoom');
+  var zoomInButton = lightbox && lightbox.querySelector('[data-lightbox-action="zoom-in"]');
+  var zoomOutButton = lightbox && lightbox.querySelector('[data-lightbox-action="zoom-out"]');
+  var resetButton = lightbox && lightbox.querySelector('[data-lightbox-action="reset"]');
+  var closeButton = lightbox && lightbox.querySelector('[data-lightbox-action="close"]');
+  var zoomableImages = document.querySelectorAll('.zoomable-image');
+
+  if (!lightbox || !stage || !expandedImage || !zoomableImages.length) {
+    return;
+  }
+
+  var MIN_SCALE = 1;
+  var MAX_SCALE = 6;
+  var scale = MIN_SCALE;
+  var panX = 0;
+  var panY = 0;
+  var previousFocus = null;
+  var activePointers = new Map();
+  var dragStart = null;
+  var pinchStart = null;
+
+  function clampPan() {
+    var stageRect = stage.getBoundingClientRect();
+    var maxX = Math.max(0, (expandedImage.offsetWidth * scale - stageRect.width) / 2);
+    var maxY = Math.max(0, (expandedImage.offsetHeight * scale - stageRect.height) / 2);
+
+    panX = Math.max(-maxX, Math.min(maxX, panX));
+    panY = Math.max(-maxY, Math.min(maxY, panY));
+  }
+
+  function renderView() {
+    clampPan();
+    expandedImage.style.transform = 'translate3d(' + panX + 'px, ' + panY + 'px, 0) scale(' + scale + ')';
+    zoomOutput.value = Math.round(scale * 100) + '%';
+    zoomOutput.textContent = zoomOutput.value;
+    zoomOutButton.disabled = scale <= MIN_SCALE;
+    resetButton.disabled = scale <= MIN_SCALE && panX === 0 && panY === 0;
+    stage.classList.toggle('is-zoomed', scale > MIN_SCALE);
+  }
+
+  function resetView() {
+    scale = MIN_SCALE;
+    panX = 0;
+    panY = 0;
+    renderView();
+  }
+
+  function setZoom(nextScale, clientX, clientY) {
+    var oldScale = scale;
+    var newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, nextScale));
+    var stageRect = stage.getBoundingClientRect();
+    var anchorX = (clientX === undefined ? stageRect.left + stageRect.width / 2 : clientX) - stageRect.left - stageRect.width / 2;
+    var anchorY = (clientY === undefined ? stageRect.top + stageRect.height / 2 : clientY) - stageRect.top - stageRect.height / 2;
+
+    panX = anchorX - (anchorX - panX) * (newScale / oldScale);
+    panY = anchorY - (anchorY - panY) * (newScale / oldScale);
+    scale = newScale;
+
+    if (scale === MIN_SCALE) {
+      panX = 0;
+      panY = 0;
+    }
+
+    renderView();
+  }
+
+  function openLightbox(sourceImage) {
+    previousFocus = document.activeElement;
+    expandedImage.alt = sourceImage.alt || 'Expanded figure';
+    caption.textContent = sourceImage.alt || 'Expanded figure';
+    expandedImage.src = sourceImage.currentSrc || sourceImage.src;
+    lightbox.hidden = false;
+    document.body.classList.add('image-lightbox-open');
+    resetView();
+    closeButton.focus();
+  }
+
+  function closeLightbox() {
+    if (lightbox.hidden) {
+      return;
+    }
+
+    lightbox.hidden = true;
+    document.body.classList.remove('image-lightbox-open');
+    expandedImage.removeAttribute('src');
+    activePointers.clear();
+    dragStart = null;
+    pinchStart = null;
+
+    if (previousFocus && typeof previousFocus.focus === 'function') {
+      previousFocus.focus();
+    }
+  }
+
+  zoomableImages.forEach(function(image) {
+    image.setAttribute('tabindex', '0');
+    image.setAttribute('role', 'button');
+    image.setAttribute('aria-haspopup', 'dialog');
+    image.setAttribute('aria-label', (image.alt || 'Figure') + '. Open larger image.');
+
+    image.addEventListener('click', function() {
+      openLightbox(image);
+    });
+
+    image.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(image);
+      }
+    });
+  });
+
+  zoomInButton.addEventListener('click', function() {
+    setZoom(scale * 1.3);
+  });
+
+  zoomOutButton.addEventListener('click', function() {
+    setZoom(scale / 1.3);
+  });
+
+  resetButton.addEventListener('click', resetView);
+  closeButton.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', function(event) {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  stage.addEventListener('wheel', function(event) {
+    event.preventDefault();
+    setZoom(scale * (event.deltaY < 0 ? 1.15 : 1 / 1.15), event.clientX, event.clientY);
+  }, { passive: false });
+
+  stage.addEventListener('dblclick', function(event) {
+    setZoom(scale > MIN_SCALE ? MIN_SCALE : 2, event.clientX, event.clientY);
+  });
+
+  stage.addEventListener('pointerdown', function(event) {
+    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    stage.setPointerCapture(event.pointerId);
+
+    if (activePointers.size === 1) {
+      dragStart = { x: event.clientX, y: event.clientY, panX: panX, panY: panY };
+      stage.classList.add('is-dragging');
+    } else if (activePointers.size === 2) {
+      var points = Array.from(activePointers.values());
+      var centerX = (points[0].x + points[1].x) / 2;
+      var centerY = (points[0].y + points[1].y) / 2;
+      var stageRect = stage.getBoundingClientRect();
+
+      pinchStart = {
+        distance: Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y),
+        scale: scale,
+        localX: (centerX - stageRect.left - stageRect.width / 2 - panX) / scale,
+        localY: (centerY - stageRect.top - stageRect.height / 2 - panY) / scale
+      };
+    }
+  });
+
+  stage.addEventListener('pointermove', function(event) {
+    if (!activePointers.has(event.pointerId)) {
+      return;
+    }
+
+    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+    if (activePointers.size === 2 && pinchStart) {
+      var points = Array.from(activePointers.values());
+      var distance = Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+      var centerX = (points[0].x + points[1].x) / 2;
+      var centerY = (points[0].y + points[1].y) / 2;
+      var stageRect = stage.getBoundingClientRect();
+
+      scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, pinchStart.scale * distance / pinchStart.distance));
+      panX = centerX - stageRect.left - stageRect.width / 2 - pinchStart.localX * scale;
+      panY = centerY - stageRect.top - stageRect.height / 2 - pinchStart.localY * scale;
+      renderView();
+    } else if (activePointers.size === 1 && dragStart && scale > MIN_SCALE) {
+      panX = dragStart.panX + event.clientX - dragStart.x;
+      panY = dragStart.panY + event.clientY - dragStart.y;
+      renderView();
+    }
+  });
+
+  function endPointer(event) {
+    activePointers.delete(event.pointerId);
+    pinchStart = null;
+
+    if (activePointers.size === 1) {
+      var remainingPoint = Array.from(activePointers.values())[0];
+      dragStart = { x: remainingPoint.x, y: remainingPoint.y, panX: panX, panY: panY };
+    } else {
+      dragStart = null;
+      stage.classList.remove('is-dragging');
+    }
+  }
+
+  stage.addEventListener('pointerup', endPointer);
+  stage.addEventListener('pointercancel', endPointer);
+
+  document.addEventListener('keydown', function(event) {
+    if (lightbox.hidden) {
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeLightbox();
+    } else if (event.key === '+' || event.key === '=') {
+      event.preventDefault();
+      setZoom(scale * 1.3);
+    } else if (event.key === '-' || event.key === '_') {
+      event.preventDefault();
+      setZoom(scale / 1.3);
+    } else if (event.key === '0') {
+      event.preventDefault();
+      resetView();
+    } else if (event.key.indexOf('Arrow') === 0 && scale > MIN_SCALE) {
+      event.preventDefault();
+      panX += event.key === 'ArrowLeft' ? 40 : event.key === 'ArrowRight' ? -40 : 0;
+      panY += event.key === 'ArrowUp' ? 40 : event.key === 'ArrowDown' ? -40 : 0;
+      renderView();
+    }
+  });
+
+  expandedImage.addEventListener('load', resetView);
+  window.addEventListener('resize', renderView);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   preloadDatasetCreationImages();
   initializeDatasetCreationPanel();
@@ -192,6 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeSamplingPanel();
   preloadLatentTrajectoryImages();
   initializeLatentTrajectoryPanel();
+  initializeImageLightbox();
 });
 
 
