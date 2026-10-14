@@ -187,7 +187,7 @@
             <p class="has-text-justified">
               <strong>Best-of-<em>k</em> hides the failure.</strong>
               Results on ambiguous problems are usually reported as best-of-<em>k</em>: run the solver <em>k</em> times and keep the reconstruction closest to the ground truth.
-              This uses information that does not exist at test time, and it throws away the <em>k</em>&minus;1 other samples, including the prior-inconsistent ones.
+              This uses information that does not exist at test time, and it throws away the <em>k</em>&minus;1 other samples, including the prior-consistent ones.
             </p>
             <p class="has-text-justified">
               <strong>Premature mode selection.</strong>
@@ -585,7 +585,7 @@
     </div>
     <p class="section-lede has-text-centered">
       <strong>PC-DAPS resolves the upside-down orientation inconsistencies seen in independent DAPS runs.</strong>
-      The diversity rows show that, although PC-DAPS is globally stable, it preserves subtle variation among the four particles of a single run.
+      The diversity rows show that, although PC-DAPS is globally stable, it preserves subtle variation among the four particles generated in a single run.
     </p>
   </div>
 </section>
