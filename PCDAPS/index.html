@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261016">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="apple-touch-icon" href="./favicon.svg">
 
@@ -215,34 +215,10 @@
               It changes two things in DAPS: the denoising distribution \(p(x_0\mid x_t)\) becomes a Gaussian mixture estimated from the bag, and a prior-based gate replaces trapped particles by copies of prior-consistent ones.
             </p>
 
-            <ol class="pipeline" aria-label="One PC-DAPS annealing step">
-              <li class="pipe-step">
-                <span class="pipe-num">1</span>
-                <span class="pipe-head"><strong>Denoise the bag</strong><span class="pipe-note">\(K\) particles, one pretrained denoiser</span></span>
-                <span class="pipe-eq">\(\tilde x_0^{(k)} = D_\theta\big(x_t^{(k)};\sigma_t\big)\)</span>
-              </li>
-              <li class="pipe-step is-new">
-                <span class="pipe-num">2</span>
-                <span class="pipe-head"><strong>Mixture prior <span class="pipe-tag">PC-DAPS</span></strong><span class="pipe-note">one component per cluster of the bag</span></span>
-                <span class="pipe-eq">\(q(x_0\mid x_t)=\sum_m \pi_m\,\mathcal N(x_0;\mu_m,\Sigma_m)\)</span>
-              </li>
-              <li class="pipe-step">
-                <span class="pipe-num">3</span>
-                <span class="pipe-head"><strong>Langevin refinement</strong><span class="pipe-note">closed-form mixture score</span></span>
-                <span class="pipe-eq">target \(\propto q(x_0\mid x_t)\,p(y\mid x_0)\), from \(\tilde x_0^{(k)}\)</span>
-              </li>
-              <li class="pipe-step is-new">
-                <span class="pipe-num">4</span>
-                <span class="pipe-head"><strong>Prior-consistency gate <span class="pipe-tag">PC-DAPS</span></strong><span class="pipe-note">when fires no usage of ground truth</span></span>
-                <span class="pipe-eq">if \(\bar r &lt; r^\star\): prune clusters with low \(s(\mathcal C_m)\)</span>
-              </li>
-              <li class="pipe-step">
-                <span class="pipe-num">5</span>
-                <span class="pipe-head"><strong>Re-noise</strong><span class="pipe-note">then repeat at the next noise level</span></span>
-                <span class="pipe-eq">\(x_{t-1}^{(k)} = \hat x_0^{(k)} + \sigma_{t-1}\epsilon\)</span>
-              </li>
-            </ol>
-            <p class="pipe-loop">&#8635;&nbsp; repeat from \(\sigma_{\max}\) down to \(\sigma_{\min}\) &nbsp;&rarr;&nbsp; return all \(K\) particles as samples</p>
+            <figure class="method-figure">
+              <img class="zoomable-image" src="./static/images/method/pcdaps_loop.svg" alt="One PC-DAPS annealing step for the bag of K particles: denoise, fit a mixture prior, run Langevin dynamics, prune and replace low-scoring clusters once when the mean residual drops below the residual of the bag mean, then renoise and return to the bag at the next noise level.">
+              <figcaption>One annealing step for the whole bag, repeated from \(\sigma_{\max}\) down to \(\sigma_{\min}\); all \(K\) particles are returned as samples.</figcaption>
+            </figure>
 
             <h4 class="title is-5 method-sub">Gaussian mixture approximation of the denoiser posterior</h4>
             <p class="has-text-justified">
@@ -552,10 +528,10 @@
           <div class="pr-cell"><img src="./static/images/pr/ffhq_pcdaps_4.jpg" alt="PC-DAPS particle 4"></div>
           <div class="pr-input is-crop"><img src="./static/images/pr/ffhq_crop_ref.jpg" alt="Reference crop"></div>
           <div class="pr-label">Diversity</div>
-          <div class="pr-cell is-crop"><img src="./static/images/pr/ffhq_crop_1.jpg" alt="PC-DAPS particle 1 crop"></div>
-          <div class="pr-cell is-crop"><img src="./static/images/pr/ffhq_crop_2.jpg" alt="PC-DAPS particle 2 crop"></div>
-          <div class="pr-cell is-crop"><img src="./static/images/pr/ffhq_crop_3.jpg" alt="PC-DAPS particle 3 crop"></div>
-          <div class="pr-cell is-crop"><img src="./static/images/pr/ffhq_crop_4.jpg" alt="PC-DAPS particle 4 crop"></div>
+          <div class="pr-cell is-crop"><img src="./static/images/pr/ffhq_crop_1.jpg" alt="PC-DAPS particle 1 crop"><svg class="pr-ring" viewBox="0 0 256 128" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none"><ellipse cx="55" cy="77" rx="33" ry="27" fill="none" stroke="#2a78d6" stroke-width="4.6"/></svg></div>
+          <div class="pr-cell is-crop"><img src="./static/images/pr/ffhq_crop_2.jpg" alt="PC-DAPS particle 2 crop"><svg class="pr-ring" viewBox="0 0 256 128" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none"><ellipse cx="176" cy="76" rx="28" ry="32" fill="none" stroke="#2a78d6" stroke-width="4.6"/></svg></div>
+          <div class="pr-cell is-crop"><img src="./static/images/pr/ffhq_crop_3.jpg" alt="PC-DAPS particle 3 crop"><svg class="pr-ring" viewBox="0 0 256 128" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none"><ellipse cx="176" cy="86" rx="34" ry="29" fill="none" stroke="#2a78d6" stroke-width="4.6"/></svg></div>
+          <div class="pr-cell is-crop"><img src="./static/images/pr/ffhq_crop_4.jpg" alt="PC-DAPS particle 4 crop"><svg class="pr-ring" viewBox="0 0 256 128" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible;pointer-events:none"><ellipse cx="128" cy="86" rx="41" ry="30" fill="none" stroke="#2a78d6" stroke-width="4.6"/></svg></div>
         </div>
         <figcaption>FFHQ</figcaption>
       </figure>
