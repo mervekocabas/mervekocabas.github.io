@@ -127,14 +127,7 @@
         </p>
         <div class="content has-text-justified">
           <p>
-            Diffusion models have become strong priors for solving inverse problems. However, nonlinear inverse problems such as phase retrieval remain challenging when multiple measurement-consistent solutions are distinguishable only by the prior; we call such measurements <em>ambiguous</em>.
-            Existing diffusion-based samplers rely on local approximations during reconstruction. For an ambiguous measurement, these approximations can allow measurement guidance to favor a measurement-consistent mode that is close to a prior-supported mode but is itself not supported by the prior.
-            Evaluation often masks this type of failure by reporting the best-of-<em>k</em> runs, where the best is selected using ground truth.
-          </p>
-          <p>
-            We introduce <strong>Prior-Consistent DAPS (PC-DAPS)</strong>, a variant of Decoupled Annealing Posterior Sampling (DAPS) designed to address this failure case by maintaining multiple candidate solutions within a single sampling run.
-            As annealing noise decreases, PC-DAPS progressively prunes and replaces weaker candidates according to their prior consistency, without any ground-truth access.
-            PC-DAPS reduces the incidence of prior-inconsistent samples and improves nonlinear reconstruction quality while preserving sample quality on linear inverse problems.
+            Diffusion models have become strong priors for solving inverse problems. However, nonlinear inverse problems such as phase retrieval remain challenging when multiple measurement-consistent solutions are distinguishable only by the prior; we call such measurements <em>ambiguous</em>. Existing diffusion-based samplers rely on local approximations during reconstruction. For an ambiguous measurement, these approximations can allow measurement guidance to favor a measurement-consistent mode that is close to a prior-supported mode but is itself not supported by the prior. Evaluation often masks this type of failure by reporting the best-of-<em>k</em> runs, where the best is selected by comparison to the ground truth. We introduce <strong>Prior-Consistent DAPS (PC-DAPS)</strong>, a variant of Decoupled Annealing Posterior Sampling (DAPS) designed to address this failure case by maintaining multiple candidate solutions within a single sampling run. As annealing noise decreases, PC-DAPS prunes and replaces weaker candidates according to their prior consistency, without any ground-truth access. PC-DAPS reduces the incidence of prior-inconsistent samples and improves sample quality on nonlinear inverse problems while preserving sample quality and diversity on linear inverse problems.
           </p>
         </div>
       </div>

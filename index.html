@@ -27,7 +27,7 @@
                   Merve Kocabas
                 </p>
                 <p>
-                  I am a Master&rsquo;s student in Machine Learning at the University of T&uuml;bingen, working with <a href="https://www.cvlibs.net">Prof. Andreas Geiger</a> and <a href="https://ggghsl.github.io">Gege Gao</a> in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/">Autonomous Vision Group</a>. I am currently a visiting student at the Georgia Institute of Technology, where I work with <a href="https://sarafridov.github.io">Prof. Sara Fridovich-Keil</a> in the <a href="https://voilalab.github.io">VOILA Lab</a>. My studies are supported by the <a href="https://eliza.school">ELIZA Master Scholarship</a>, and my master&rsquo;s thesis is supported by PROMOS scholarship. Before my master&rsquo;s studies, I completed my undergraduate education at Middle East Technical University, where I studied Computer Engineering and Aerospace Engineering.
+                  I am a Master&rsquo;s student in Machine Learning at the University of T&uuml;bingen, working with <a href="https://www.cvlibs.net">Prof. Andreas Geiger</a> in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/">Autonomous Vision Group</a>. I am currently a visiting student at the Georgia Institute of Technology, where I work with <a href="https://sarafridov.github.io">Prof. Sara Fridovich-Keil</a> in the <a href="https://voilalab.github.io">VOILA Lab</a>. My studies are supported by the <a href="https://eliza.school">ELIZA Master Scholarship</a>, and my master&rsquo;s thesis is supported by PROMOS scholarship. Before my master&rsquo;s studies, I completed my undergraduate education at Middle East Technical University, where I studied Computer Engineering and Aerospace Engineering.
                   I am always happy to connect, so feel free to reach out!
                 </p>
                 <p style="text-align:center">
@@ -53,6 +53,32 @@
             </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:16px;width:25%;vertical-align:middle">
+                <img src="images/pcdaps_baby_girl.gif" alt="Animated comparison of DAPS and PC-DAPS on a baby-girl phase-retrieval example" title="Click to enlarge" onclick="openLightbox('images/pcdaps_baby_girl.gif')" class="publication-teaser" style="cursor:zoom-in;">
+              </td>
+              <td style="padding:8px;width:75%;vertical-align:middle">
+                <span class="papertitle">Beyond Best-of-<em>k</em>: Prior-Consistent DAPS for Ambiguous Nonlinear Inverse Problems</span>
+                <br>
+                <strong>Merve Kocabas<sup>*</sup></strong>,
+                Benjamin A. Burns<sup>*</sup>,
+                Andreas Geiger,
+                Kent Gauen,
+                Sara Fridovich-Keil
+                <br>
+                <em>Preprint</em>, 2026
+                <br>
+                [Paper (soon)]
+                [<a href="PCDAPS/">Website</a>]
+                [<a href="https://github.com/voilalab/PC-DAPS">Code</a>]
+                [<a href="javascript:void(0);" onclick="toggleAbstract('pcdaps_abstract'); return false;">Abstract</a>]
+                <p></p>
+                <p id="pcdaps_abstract" style="display:none;">
+                  <strong>Abstract:</strong>
+                  Diffusion models have become strong priors for solving inverse problems. However, nonlinear inverse problems such as phase retrieval remain challenging when multiple measurement-consistent solutions are distinguishable only by the prior; we call such measurements ambiguous. Existing diffusion-based samplers rely on local approximations during reconstruction. For an ambiguous measurement, these approximations can allow measurement guidance to favor a measurement-consistent mode that is close to a prior-supported mode but is itself not supported by the prior. Evaluation often masks this type of failure by reporting the best-of-<em>k</em> runs, where the best is selected by comparison to the ground truth. We introduce Prior-Consistent DAPS (PC-DAPS), a variant of Decoupled Annealing Posterior Sampling (DAPS) designed to address this failure case by maintaining multiple candidate solutions within a single sampling run. As annealing noise decreases, PC-DAPS prunes and replaces weaker candidates according to their prior consistency, without any ground-truth access. PC-DAPS reduces the incidence of prior-inconsistent samples and improves sample quality on nonlinear inverse problems while preserving sample quality and diversity on linear inverse problems.
+                </p>
+              </td>
+            </tr>
             <tr>
               <td style="padding:16px;width:25%;vertical-align:middle">
                 <img src="images/teaser_tf_parallel.gif" alt="Trajectory Forcing teaser" title="Click to enlarge" onclick="openLightbox('images/teaser_tf_parallel.gif')" style="width:100%;max-width:100%;box-sizing:border-box;border-radius:8px;border:2px solid #073763;padding:6px;background:#fff;box-shadow:0 2px 12px rgba(7,55,99,.15);cursor:zoom-in;">

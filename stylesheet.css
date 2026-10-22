@@ -129,6 +129,17 @@ h2 {
   font-weight: 700;
 }
 
+.publication-teaser {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 2px solid #073763;
+  padding: 6px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(7, 55, 99, .15);
+}
+
 .name {
   padding-top: 20px;
   margin: 0;
