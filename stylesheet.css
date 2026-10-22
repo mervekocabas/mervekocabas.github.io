@@ -140,6 +140,30 @@ h2 {
   box-shadow: 0 2px 12px rgba(7, 55, 99, .15);
 }
 
+.publications-table {
+  table-layout: fixed;
+}
+
+.publications-table td {
+  min-width: 0;
+}
+
+.publications-table td:first-child {
+  width: 25%;
+}
+
+.publications-table td:last-child {
+  width: 75%;
+  overflow-wrap: anywhere;
+}
+
+.publications-table img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 .name {
   padding-top: 20px;
   margin: 0;
