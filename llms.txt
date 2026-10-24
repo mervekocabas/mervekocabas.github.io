@@ -1,0 +1,18 @@
+# Merve Kocabas — research website
+
+This is the research website of Merve Kocabas, a machine learning researcher working on generative models, diffusion, inverse problems, and computer vision.
+
+## Project pages
+
+- [Prior-Consistent DAPS (PC-DAPS)](https://mervekocabas.github.io/PCDAPS/): Beyond Best-of-k: Prior-Consistent DAPS for Ambiguous Nonlinear Inverse Problems. PC-DAPS keeps multiple candidate reconstructions in one diffusion sampling run and uses prior consistency to prune and replace weak candidates without access to the ground truth.
+- [Trajectory Forcing](https://mervekocabas.github.io/TrajectoryForcing/): Structure-First Generation with Controllable Semantic Trajectories. Trajectory Forcing makes image-generation trajectories explicit, decodable, inspectable, and editable through coarse-to-fine semantic stages.
+
+## Primary sources
+
+- [Merve Kocabas homepage](https://mervekocabas.github.io/)
+- [PC-DAPS paper on arXiv](https://arxiv.org/abs/2610.31592)
+- [PC-DAPS code](https://github.com/voilalab/PC-DAPS)
+- [Trajectory Forcing paper on arXiv](https://arxiv.org/abs/2606.22527)
+- [Trajectory Forcing code](https://github.com/mervekocabas/TrajectoryForcing)
+
+All project pages are public, free to access, and contain the full project description, figures, paper links, code links, and BibTeX entries.

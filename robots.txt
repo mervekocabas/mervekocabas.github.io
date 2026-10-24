@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
+# Keep the project pages available to search and answer engines.
+User-agent: Googlebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://mervekocabas.github.io/sitemap.xml

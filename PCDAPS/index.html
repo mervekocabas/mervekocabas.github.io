@@ -3,16 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="PC-DAPS keeps a bag of candidate solutions inside a single diffusion sampling run and prunes prior-inconsistent ones as the noise decreases, without ground-truth access.">
-  <meta name="keywords" content="PC-DAPS, DAPS, diffusion models, inverse problems, phase retrieval, posterior sampling">
+        content="Prior-Consistent DAPS (PC-DAPS) keeps multiple candidate solutions inside one diffusion sampling run and prunes prior-inconsistent reconstructions for ambiguous nonlinear inverse problems, without ground-truth access.">
+  <meta name="keywords" content="Prior-Consistent DAPS, Prior Consistent DAPS, PC-DAPS, PCDAPS, DAPS, diffusion models, inverse problems, phase retrieval, posterior sampling">
+  <meta name="author" content="Merve Kocabas, Benjamin A. Burns, Andreas Geiger, Kent Gauen, Sara Fridovich-Keil">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="googlebot" content="index, follow, max-image-preview:large">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Beyond Best-of-k: Prior-Consistent DAPS for Ambiguous Nonlinear Inverse Problems</title>
   <link rel="canonical" href="https://mervekocabas.github.io/PCDAPS/">
 
   <meta property="og:title" content="PC-DAPS: Beyond Best-of-k — Prior-Consistent DAPS for Ambiguous Nonlinear Inverse Problems">
-  <meta property="og:description" content="Keep multiple candidate solutions alive until the prior can tell them apart, instead of picking the best of k runs with the ground truth.">
+  <meta property="og:description" content="Prior-Consistent DAPS (PC-DAPS) keeps multiple candidate solutions alive until the prior can tell them apart, instead of picking the best of k runs with the ground truth.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mervekocabas.github.io/PCDAPS/">
+  <meta property="og:site_name" content="Merve Kocabas">
   <meta property="og:image" content="https://mervekocabas.github.io/PCDAPS/static/images/teaser_static.png">
+  <meta property="og:image:alt" content="PC-DAPS phase retrieval comparison showing prior-consistent reconstructions">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Prior-Consistent DAPS (PC-DAPS)">
+  <meta name="twitter:description" content="A particle-based diffusion sampler for ambiguous nonlinear inverse problems.">
+  <meta name="twitter:image" content="https://mervekocabas.github.io/PCDAPS/static/images/teaser_static.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://mervekocabas.github.io/PCDAPS/#article",
+    "url": "https://mervekocabas.github.io/PCDAPS/",
+    "mainEntityOfPage": "https://mervekocabas.github.io/PCDAPS/",
+    "headline": "Beyond Best-of-k: Prior-Consistent DAPS for Ambiguous Nonlinear Inverse Problems",
+    "name": "Prior-Consistent DAPS (PC-DAPS)",
+    "alternativeHeadline": "PC-DAPS",
+    "description": "Prior-Consistent DAPS keeps multiple candidate solutions inside one diffusion sampling run and prunes prior-inconsistent reconstructions for ambiguous nonlinear inverse problems.",
+    "keywords": ["Prior-Consistent DAPS", "PC-DAPS", "DAPS", "diffusion models", "inverse problems", "phase retrieval"],
+    "image": "https://mervekocabas.github.io/PCDAPS/static/images/teaser_static.png",
+    "datePublished": "2026-10-22",
+    "isAccessibleForFree": true,
+    "author": [
+      {"@type": "Person", "name": "Merve Kocabas", "url": "https://mervekocabas.github.io/"},
+      {"@type": "Person", "name": "Benjamin A. Burns", "url": "https://bburns.xyz/"},
+      {"@type": "Person", "name": "Andreas Geiger", "url": "https://www.cvlibs.net/"},
+      {"@type": "Person", "name": "Kent Gauen", "url": "https://gauenk.github.io/"},
+      {"@type": "Person", "name": "Sara Fridovich-Keil", "url": "https://sarafridov.github.io/"}
+    ],
+    "sameAs": [
+      "https://arxiv.org/abs/2610.31592",
+      "https://github.com/voilalab/PC-DAPS"
+    ]
+  }
+  </script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
