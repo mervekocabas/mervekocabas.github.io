@@ -433,7 +433,10 @@
       var lo = zoom ? D.zoom.lo : D.y_lo;
       var hi = zoom ? D.zoom.hi : D.y_hi;
       function Y(v) { return (hi - v) / (hi - lo) * ph; }
-      var ux = st.u * pw;
+      // The zoom starts when the main panels reach the gate, so its full width
+      // covers only the final 0.3 -> 0.1 part of the annealing.
+      var zoomU = zoom ? clamp((st.u - uGate) / (1 - uGate), 0, 1) : st.u;
+      var ux = zoomU * pw;
       var ink = cssVar('--ink-2') || '#4a5360';
       var r = Math.max(1.2, pw / 150);
 
@@ -441,7 +444,11 @@
       ctx.fillRect(0, 0, pw, ph);
       var img = heat[p.key];
       if (img && ux > 0.5) {
-        ctx.drawImage(img, 0, 0, img.width * st.u, img.height, 0, 0, ux, ph);
+        if (zoom) {
+          ctx.drawImage(img, uGate * img.width, 0, (1 - uGate) * img.width, img.height, 0, 0, ux, ph);
+        } else {
+          ctx.drawImage(img, 0, 0, img.width * st.u, img.height, 0, 0, ux, ph);
+        }
       }
 
       ctx.save();
@@ -504,7 +511,7 @@
           }
           ctx.globalAlpha = 1;
         }
-      } else if (!st.final) {
+      } else if (!st.final && st.u >= uGate) {
         var fz = frac(st.u, uZoom);
         var nz = D.zoom.levels.length;
         ctx.globalAlpha = 0.82;
@@ -517,7 +524,7 @@
         ctx.globalAlpha = 1;
       }
 
-      if (!st.final && st.u > 0 && st.u < 1) {
+      if (!st.final && ux > 0 && ux < pw) {
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)';
         ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(ux, 0); ctx.lineTo(ux, ph); ctx.stroke();
@@ -540,11 +547,14 @@
         if (p.key === 'daps') { glyph(ctx, 'bad', gx, Y((D.a + D.b) * kClean), gs); }
       }
 
-      // sigma ticks: 10 (left), 1, 0.1 (right), and the gate for PC-DAPS
+      // The zoom is a dedicated 0.3 -> 0.1 view; other panels show the full
+      // 10 -> 0.1 range and mark the PC-DAPS gate separately.
       ctx.fillStyle = ink;
       ctx.font = '11px "Noto Sans", sans-serif';
       ctx.textBaseline = 'top';
-      [[0, '10', 'left'], [0.5, '1', 'center'], [1, '0.1', 'right']].forEach(function (tk) {
+      var ticks = zoom ? [[0, '0.3', 'left'], [1, '0.1', 'right']]
+        : [[0, '10', 'left'], [0.5, '1', 'center'], [1, '0.1', 'right']];
+      ticks.forEach(function (tk) {
         var x = tk[0] * pw;
         ctx.fillRect(Math.min(Math.round(x), pw - 1), ph, 1, 3);
         ctx.textAlign = tk[2];
